@@ -52,7 +52,6 @@ export default {
   },
   methods: {
     onSubmit () {
-      evt.preventDefault();
       alert(JSON.stringify(this.form));
       this.postform(this.form);
     },
@@ -69,23 +68,23 @@ export default {
       var content_r = document.createElement('input');
    
       form.method = 'POST';
-      form.action = 'https://docs.google.com/forms/d/e/1FAIpQLSdScSitSpdVGNIGq1C7z56AWANOxj6bBHaS-99TacXK2QEH3Q/formResponse';
+      form.action = 'https://docs.google.com/forms/d/e/1FAIpQLSdZFOiKqCfLqxKynMXJdMyIk6thLrvslJvQX5XZ5N9pqBMyjQ/formResponse';
    
       mail_r.type = 'hidden'; //入力フォームが表示されないように
-      mail_r.name = 'entry.2040554687';
+      mail_r.name = 'emailAddress';
       mail_r.value = v.email;
       title_r.type = 'hidden'; //入力フォームが表示されないように
-      title_r.name = 'entry.787095462';
+      title_r.name = 'entry.821956435';
       title_r.value = v.title;
       content_r.type = 'hidden'; //入力フォームが表示されないように
-      content_r.name = 'entry.1722078225';
+      content_r.name = 'entry.839316627';
       content_r.value = v.content;
    
       form.appendChild(mail_r);
       form.appendChild(title_r);
       form.appendChild(content_r);
       document.body.appendChild(form);
-   
+      console.log(v)
       form.submit();
     }
   }
