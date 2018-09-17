@@ -1,0 +1,27 @@
+{
+  "name": "vue-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryomak/vue-blog.git"
+  },
+  "author": "ryomak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryomak/vue-blog/issues"
+  },
+  "homepage": "https://github.com/ryomak/vue-blog#readme",
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "element-ui": "^2.4.7",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "vuepress": "^0.14.3"
+  }
+}
