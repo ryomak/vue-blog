@@ -3,6 +3,10 @@ module.exports = {
   dest: './dist',
   title: 'kurisuのブログ',
   description: 'kurisuのブロぐ',
+  ga: 'UA-125943474-1',
+  head: [
+    ['meta',{ name:"google-site-verification", content:"qaMSP7OaSQ1W9LjCjdsxPcQWt8RkTEpCdJsexYkqeqg"}],
+  ],
   themeConfig: {
     repo: 'ryomak',
     nav: [
