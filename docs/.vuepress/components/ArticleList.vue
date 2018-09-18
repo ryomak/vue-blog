@@ -96,17 +96,6 @@ export default {
       }
     }
   }
-  .el-pagination {
-    margin: 30px 0;
-    text-align: right;
-    .btn-next, .btn-prev {
-      background-color: #f6f6f6;
-    }
-    .el-pager {
-      .number, .el-icon {
-        background-color: #f6f6f6;
-      }
-    }
-  }
+  
 }
 </style>
