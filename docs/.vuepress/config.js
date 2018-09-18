@@ -20,13 +20,9 @@ module.exports = {
           { text: 'About', link: '/about/' },
           { text: 'Contact', link: '/contact/' },
         ]
-      }
+      },
+      { text: 'Logo-Tshit', link: 'https://peppar.fashionstore.jp/'},
     ],
-    sidebar: {
-      '/docs/blog/': [
-        'axios-excel',
-      ]
-    }
   },
   configureWebpack: {
     resolve: {
