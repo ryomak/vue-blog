@@ -6,6 +6,11 @@ date: 2018-09-17
 img: "axios-excel/logo.png"
 show: true
 
+meta:
+  - name: description
+    content: axiosでBlobファイルを取得するときに文字化けする
+  - name: keyword
+    content: axios,blob,文字化け,vue
 ---
 ## ハマったポイント
 
