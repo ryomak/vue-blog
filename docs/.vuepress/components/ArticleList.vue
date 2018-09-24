@@ -40,7 +40,6 @@ export default {
   },
   computed: {
     items () {
-      console.log(this.$site.pages)
       return this.$site.pages.filter(function(v){
         return v.frontmatter.show
       })
