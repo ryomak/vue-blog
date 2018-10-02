@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Go言語でBlockchainを作ってみた | kurisuのブログ</title>
+    <meta name="description" content="Go言語でBlockchainを作ってみた">
+    <meta name="google-site-verification" content="qaMSP7OaSQ1W9LjCjdsxPcQWt8RkTEpCdJsexYkqeqg">
+    <meta name="keywords" content="GO Blockchain"><meta property="og:title" content="Go言語でBlockchainを作ってみた"><meta property="og:description" content="Go言語でBlockchainの基本の機能を実装しました．">
+    <link rel="preload" href="/assets/css/0.styles.9f6e1f29.css" as="style"><link rel="preload" href="/assets/js/app.09d545a3.js" as="script"><link rel="preload" href="/assets/js/11.3dbedf6c.js" as="script"><link rel="prefetch" href="/assets/js/5.892d757c.js"><link rel="prefetch" href="/assets/js/2.02b98663.js"><link rel="prefetch" href="/assets/js/3.cbacdbe3.js"><link rel="prefetch" href="/assets/js/4.812fed4a.js"><link rel="prefetch" href="/assets/js/6.cc745200.js"><link rel="prefetch" href="/assets/js/7.eaad0ecf.js"><link rel="prefetch" href="/assets/js/8.4d164f75.js"><link rel="prefetch" href="/assets/js/9.5069b927.js"><link rel="prefetch" href="/assets/js/10.6fe45210.js"><link rel="prefetch" href="/assets/js/12.58c6d5d3.js"><link rel="prefetch" href="/assets/js/13.6f09f994.js"><link rel="prefetch" href="/assets/js/14.293a3e2b.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9f6e1f29.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/dog.png" alt="kurisuのブログ" class="logo"> <span class="site-name can-hide">kurisuのブログ</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/blog/" class="nav-link router-link-active">Blog</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Detail</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/about/" class="nav-link">About</a></li><li class="dropdown-item"><!----> <a href="/contact/" class="nav-link">Contact</a></li></ul></div></div><div class="nav-item"><a href="https://peppar.fashionstore.jp/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Logo-Tshit
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/ryomak" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/blog/" class="nav-link router-link-active">Blog</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Detail</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/about/" class="nav-link">About</a></li><li class="dropdown-item"><!----> <a href="/contact/" class="nav-link">Contact</a></li></ul></div></div><div class="nav-item"><a href="https://peppar.fashionstore.jp/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Logo-Tshit
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/ryomak" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <!----> </div> <div class="page"> <div class="content"><h1 id="blockchainをgoで実装してみた"><a href="#blockchainをgoで実装してみた" aria-hidden="true" class="header-anchor">#</a> blockchainをGoで実装してみた</h1> <h2 id="はじめに"><a href="#はじめに" aria-hidden="true" class="header-anchor">#</a> はじめに</h2> <p><a href="https://hackernoon.com/learn-blockchains-by-building-one-117428612f46" target="_blank" rel="noopener noreferrer">この記事<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>がPythonで書かれている為，この記事を参考にしながらGo言語で実装しました</p> <h2 id="実装機能"><a href="#実装機能" aria-hidden="true" class="header-anchor">#</a> 実装機能</h2> <ul><li>Proof Of Work</li> <li>コイン量計算</li> <li>他のノードとつなぐ</li> <li>他のノードとチェーンを比較する</li> <li>マイニング</li> <li>トランザクション追加</li></ul> <h2 id="blockchainの構造"><a href="#blockchainの構造" aria-hidden="true" class="header-anchor">#</a> Blockchainの構造</h2> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> Blockchain <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Chain              <span class="token punctuation">[</span><span class="token punctuation">]</span>Block 
+	CurrentTransactions <span class="token punctuation">[</span><span class="token punctuation">]</span>Transaction
+	Nodes              <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span> Block <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Index        <span class="token builtin">int</span>
+	Timestamp    <span class="token builtin">int64</span>
+	Transactions  <span class="token punctuation">[</span><span class="token punctuation">]</span>Transaction
+	Proof        <span class="token builtin">int</span>
+	PreviousHash <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> Transaction <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Sender    <span class="token builtin">string</span>
+	Recipient <span class="token builtin">string</span>
+	Amount    <span class="token builtin">int</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="blockchainの機能全コード"><a href="#blockchainの機能全コード" aria-hidden="true" class="header-anchor">#</a> Blockchainの機能全コード</h2> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">package</span> blockchain
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;crypto/sha256&quot;</span>
+	<span class="token string">&quot;encoding/hex&quot;</span>
+	<span class="token string">&quot;encoding/json&quot;</span>
+	<span class="token string">&quot;errors&quot;</span>
+	<span class="token string">&quot;net/http&quot;</span>
+	<span class="token string">&quot;time&quot;</span>
+	<span class="token string">&quot;strconv&quot;</span>
+	<span class="token string">&quot;strings&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> FullChain <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Chain  <span class="token punctuation">[</span><span class="token punctuation">]</span>Block <span class="token string">`json:&quot;chain&quot;`</span>
+	Length <span class="token builtin">int</span>     <span class="token string">` json:&quot;length&quot;`</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> Blockchain <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Chain              <span class="token punctuation">[</span><span class="token punctuation">]</span>Block 
+	CurrentTransactions <span class="token punctuation">[</span><span class="token punctuation">]</span>Transaction
+	Nodes              <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span> Block <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Index        <span class="token builtin">int</span>
+	Timestamp    <span class="token builtin">int64</span>
+	Transactions  <span class="token punctuation">[</span><span class="token punctuation">]</span>Transaction
+	Proof        <span class="token builtin">int</span>
+	PreviousHash <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> Transaction <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	Sender    <span class="token builtin">string</span>
+	Recipient <span class="token builtin">string</span>
+	Amount    <span class="token builtin">int</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> WORKLEVEL <span class="token operator">=</span> <span class="token number">4</span>
+
+<span class="token keyword">func</span> <span class="token function">Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span>Blockchain<span class="token punctuation">{</span>
+	bc <span class="token operator">:=</span> <span class="token function">new</span><span class="token punctuation">(</span>Blockchain<span class="token punctuation">)</span>
+	bc<span class="token punctuation">.</span><span class="token function">NewBlock</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> bc
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>bc <span class="token operator">*</span>Blockchain<span class="token punctuation">)</span> <span class="token function">NewBlock</span><span class="token punctuation">(</span>proof <span class="token builtin">int</span><span class="token punctuation">,</span> previousHash <span class="token operator">...</span><span class="token builtin">string</span><span class="token punctuation">)</span> Block <span class="token punctuation">{</span>
+	<span class="token keyword">var</span> pg <span class="token builtin">string</span>
+	<span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>previousHash<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+		pg <span class="token operator">=</span> previousHash<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+		pg <span class="token operator">=</span> bc<span class="token punctuation">.</span><span class="token function">Hash</span><span class="token punctuation">(</span>bc<span class="token punctuation">.</span>Chain<span class="token punctuation">[</span><span class="token function">len</span><span class="token punctuation">(</span>bc<span class="token punctuation">.</span>Chain<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	block <span class="token operator">:=</span> Block<span class="token punctuation">{</span>
+		Index<span class="token punctuation">:</span>        <span class="token punctuation">(</span><span class="token function">len</span><span class="token punctuation">(</span>bc<span class="token punctuation">.</span>Chain<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		Timestamp<span class="token punctuation">:</span>    time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Unix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		Transactions<span class="token punctuation">:</span>  bc<span class="token punctuation">.</span>CurrentTransactions<span class="token punctuation">,</span>
+		Proof<span class="token punctuation">:</span>        proof<span class="token punctuation">,</span>
+		PreviousHash<span class="token punctuation">:</span> pg<span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+	bc<span class="token punctuation">.</span>CurrentTransactions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>Transaction<span class="token punctuation">{</span><span class="token punctuation">}</span>
+	bc<span class="token punctuation">.</span>Chain <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>bc<span class="token punctuation">.</span>Chain<span class="token punctuation">,</span> block<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> block
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>bc Blockchain<span class="token punctuation">)</span> <span class="token function">LastBlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Block <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> bc<span class="token punctuation">.</span>Chain<span class="token punctuation">[</span><span class="token function">len</span><span class="token punctuation">(</span>bc<span class="token punctuation">.</span>Chain<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>bc <span class="token operator">*</span>Blockchain<span class="token punctuation">)</span> <span class="token function">NewTransaction</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> recipient <span class="token builtin">string</span><span class="token punctuation">,</span> amount <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>bc<span class="token punctuation">.</span><span class="token function">GetAmount</span><span class="token punctuation">(</span>sender<span class="token punctuation">)</span><span class="token operator">-</span>amount<span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token number">0</span> <span class="token operator">&amp;&amp;</span> sender <span class="token operator">!=</span> <span class="token string">&quot;0&quot;</span><span class="token comment">/*minus amount  &amp;&amp;!genesis*/</span><span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token number">0</span>
+	<span class="token punctuation">}</span>
+	bc<span class="token punctuation">.</span>CurrentTransactions <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>bc<span class="token punctuation">.</span>CurrentTransactions<span class="token punctuation">,</span>Transaction<span class="token punctuation">{</span>
+		Sender<span class="token punctuation">:</span>    sender<span class="token punctuation">,</span>
+		Recipient<span class="token punctuation">:</span> recipient<span class="token punctuation">,</span>
+		Amount<span class="token punctuation">:</span>    amount<span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> bc<span class="token punctuation">.</span><span class="token function">LastBlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Index <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>bc <span class="token operator">*</span>Blockchain<span class="token punctuation">)</span> <span class="token function">Hash</span><span class="token punctuation">(</span>block Block<span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+	blockString<span class="token punctuation">,</span> err <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">Marshal</span><span class="token punctuation">(</span>block<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	hashData <span class="token operator">:=</span> sha256<span class="token punctuation">.</span><span class="token function">Sum256</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>blockString<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> hex<span class="token punctuation">.</span><span class="token function">EncodeToString</span><span class="token punctuation">(</span>hashData<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>bc <span class="token operator">*</span>Blockchain<span class="token punctuation">)</span> <span class="token function">RegisterNode</span><span class="token punctuation">(</span>address <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
+	res<span class="token punctuation">,</span> err <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span>address <span class="token operator">+</span> <span class="token string">&quot;/chain&quot;</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">||</span> res<span class="token punctuation">.</span>StatusCode <span class="token operator">!=</span> http<span class="token punctuation">.</span>StatusOK <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> err
+	<span class="token punctuation">}</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> bc<span class="token punctuation">.</span>Nodes <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> v <span class="token operator">==</span> address <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">&quot;すでに登録されています&quot;</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	bc<span class="token punctuation">.</span>Nodes <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>bc<span class="token punctuation">.</span>Nodes<span class="token punctuation">,</span> address<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
+
+unc <span class="token function">ValidProof</span><span class="token punctuation">(</span>lastProof<span class="token punctuation">,</span> proof <span class="token builtin">int</span><span class="token punctuation">,</span> level <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
+	guess <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>strconv<span class="token punctuation">.</span><span class="token function">Itoa</span><span class="token punctuation">(</span>lastProof<span class="token punctuation">)</span> <span class="token operator">+</span> strconv<span class="token punctuation">.</span><span class="token function">Itoa</span><span class="token punctuation">(</span>proof<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	hashData <span class="token operator">:=</span> sha256<span class="token punctuation">.</span><span class="token function">Sum256</span><span class="token punctuation">(</span>guess<span class="token punctuation">)</span>
+	guessHash <span class="token operator">:=</span> hex<span class="token punctuation">.</span><span class="token function">EncodeToString</span><span class="token punctuation">(</span>hashData<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> guessHash<span class="token punctuation">[</span><span class="token punctuation">:</span>level<span class="token punctuation">]</span> <span class="token operator">==</span> strings<span class="token punctuation">.</span><span class="token function">Repeat</span><span class="token punctuation">(</span><span class="token string">&quot;0&quot;</span><span class="token punctuation">,</span> level<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>bc <span class="token operator">*</span>Blockchain<span class="token punctuation">)</span> <span class="token function">ValidChain</span><span class="token punctuation">(</span>chain <span class="token punctuation">[</span><span class="token punctuation">]</span>Block<span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
+	lastBlock <span class="token operator">:=</span> chain<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+	currentIndex <span class="token operator">:=</span> <span class="token number">1</span>
+	<span class="token keyword">for</span> currentIndex <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>chain<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		block <span class="token operator">:=</span> chain<span class="token punctuation">[</span>currentIndex<span class="token punctuation">]</span>
+		<span class="token keyword">if</span> block<span class="token punctuation">.</span>PreviousHash <span class="token operator">!=</span> bc<span class="token punctuation">.</span><span class="token function">Hash</span><span class="token punctuation">(</span>lastBlock<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> <span class="token boolean">false</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span> <span class="token operator">!</span><span class="token function">ValidProof</span><span class="token punctuation">(</span>lastBlock<span class="token punctuation">.</span>Proof<span class="token punctuation">,</span> block<span class="token punctuation">.</span>Proof<span class="token punctuation">,</span> WORKLEVEL<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			guess <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>strconv<span class="token punctuation">.</span><span class="token function">Itoa</span><span class="token punctuation">(</span>lastBlock<span class="token punctuation">.</span>Proof<span class="token punctuation">)</span> <span class="token operator">+</span> strconv<span class="token punctuation">.</span><span class="token function">Itoa</span><span class="token punctuation">(</span>block<span class="token punctuation">.</span>Proof<span class="token punctuation">)</span><span class="token punctuation">)</span>
+			hashData <span class="token operator">:=</span> sha256<span class="token punctuation">.</span><span class="token function">Sum256</span><span class="token punctuation">(</span>guess<span class="token punctuation">)</span>
+			guessHash <span class="token operator">:=</span> hex<span class="token punctuation">.</span><span class="token function">EncodeToString</span><span class="token punctuation">(</span>hashData<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+			log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>guessHash<span class="token punctuation">)</span>
+			log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>lastBlock<span class="token punctuation">.</span>Proof<span class="token punctuation">)</span>
+			log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>block<span class="token punctuation">.</span>Proof<span class="token punctuation">)</span>
+			<span class="token keyword">return</span> <span class="token boolean">false</span>
+		<span class="token punctuation">}</span>
+		lastBlock <span class="token operator">=</span> block
+		currentIndex<span class="token operator">++</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>bc Blockchain<span class="token punctuation">)</span> <span class="token function">ProofOfWork</span><span class="token punctuation">(</span>lastProof<span class="token punctuation">,</span> level <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+	proof <span class="token operator">:=</span> <span class="token number">0</span>
+	<span class="token keyword">for</span> <span class="token operator">!</span><span class="token function">ValidProof</span><span class="token punctuation">(</span>lastProof<span class="token punctuation">,</span> proof<span class="token punctuation">,</span> level<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		proof<span class="token operator">++</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> proof
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>bc <span class="token operator">*</span>Blockchain<span class="token punctuation">)</span> <span class="token function">ResolveConflicts</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
+	neighbours <span class="token operator">:=</span> bc<span class="token punctuation">.</span>Nodes
+	newChain <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>Block<span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+	maxLength <span class="token operator">:=</span> <span class="token function">len</span><span class="token punctuation">(</span>bc<span class="token punctuation">.</span>Chain<span class="token punctuation">)</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> node <span class="token operator">:=</span> <span class="token keyword">range</span> neighbours <span class="token punctuation">{</span>
+		res<span class="token punctuation">,</span> err <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span>node <span class="token operator">+</span> <span class="token string">&quot;/chain&quot;</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token keyword">continue</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span> res<span class="token punctuation">.</span>StatusCode <span class="token operator">!=</span> http<span class="token punctuation">.</span>StatusOK <span class="token punctuation">{</span>
+			log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token keyword">continue</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">var</span> fullChain FullChain
+		<span class="token keyword">if</span> err <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">NewDecoder</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>Body<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Decode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>fullChain<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token keyword">continue</span>
+		<span class="token punctuation">}</span>
+		log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>fullChain<span class="token punctuation">.</span>Length<span class="token punctuation">,</span><span class="token string">&quot;:&quot;</span><span class="token punctuation">,</span>maxLength<span class="token punctuation">,</span><span class="token string">&quot;:&quot;</span><span class="token punctuation">,</span>bc<span class="token punctuation">.</span><span class="token function">ValidChain</span><span class="token punctuation">(</span>fullChain<span class="token punctuation">.</span>Chain<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> fullChain<span class="token punctuation">.</span>Length <span class="token operator">&gt;</span> maxLength <span class="token operator">&amp;&amp;</span> bc<span class="token punctuation">.</span><span class="token function">ValidChain</span><span class="token punctuation">(</span>fullChain<span class="token punctuation">.</span>Chain<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			maxLength <span class="token operator">=</span> fullChain<span class="token punctuation">.</span>Length
+			newChain <span class="token operator">=</span> fullChain<span class="token punctuation">.</span>Chain
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>newChain<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+		bc<span class="token punctuation">.</span>Chain <span class="token operator">=</span> newChain
+		<span class="token keyword">return</span> <span class="token boolean">true</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>bc <span class="token operator">*</span>Blockchain<span class="token punctuation">)</span><span class="token function">GetAmount</span><span class="token punctuation">(</span>nodeIdent <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token builtin">int</span><span class="token punctuation">{</span>
+	amount <span class="token operator">:=</span> <span class="token number">0</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span>v <span class="token operator">:=</span> <span class="token keyword">range</span> bc<span class="token punctuation">.</span>Chain<span class="token punctuation">{</span>
+		<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span>t <span class="token operator">:=</span> <span class="token keyword">range</span> v<span class="token punctuation">.</span>Transactions<span class="token punctuation">{</span>
+			<span class="token keyword">if</span> t<span class="token punctuation">.</span>Sender <span class="token operator">==</span> nodeIdent<span class="token punctuation">{</span>
+				amount <span class="token operator">-=</span> t<span class="token punctuation">.</span>Amount
+			<span class="token punctuation">}</span>
+			<span class="token keyword">if</span> t<span class="token punctuation">.</span>Recipient <span class="token operator">==</span> nodeIdent<span class="token punctuation">{</span>
+				amount <span class="token operator">+=</span> t<span class="token punctuation">.</span>Amount
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> amount
+<span class="token punctuation">}</span>
+
+</code></pre></div><h2 id="さいごに"><a href="#さいごに" aria-hidden="true" class="header-anchor">#</a> さいごに</h2> <p>このブロックチェーンの機能にhttp通信でかつJson形式で利用てきるよう実装しているので
+<a href="https://github.com/ryomak/blockchain-with-go/blob/master/controller/controller.go" target="_blank" rel="noopener noreferrer">このレポジトリ<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>を参照してください</p></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/11.3dbedf6c.js" defer></script><script src="/assets/js/app.09d545a3.js" defer></script>
+  </body>
+</html>

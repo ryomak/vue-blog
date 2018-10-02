@@ -9,8 +9,12 @@ show: true
 meta:
   - name: description
     content: axiosでBlobファイルを取得するときに文字化けする
-  - name: keyword
-    content: axios,blob,文字化け,vue
+  - name: keywords
+    content: axios blob 文字化け vue
+  - propaty: og:title
+    content: Excelファイルをaxiosで扱う時の注意点
+  - property: og:description
+    content: axios.getではblobファイルを直接扱うと文字化けを起こすため，それを回避する必要があります．
 ---
 ## ハマったポイント
 

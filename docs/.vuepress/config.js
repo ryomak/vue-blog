@@ -6,11 +6,10 @@ module.exports = {
   ga: 'UA-125943474-1',
   head: [
     ['meta',{ name:"google-site-verification", content:"qaMSP7OaSQ1W9LjCjdsxPcQWt8RkTEpCdJsexYkqeqg"}],
-    ['meta',{ name:"keyword", content:"Go,Js,プログラミング,vue"}],
   ],
   themeConfig: {
     repo: 'ryomak',
-    logo: 'img/dog.png',
+    logo: '/img/dog.png',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Blog', link: '/blog/' },
