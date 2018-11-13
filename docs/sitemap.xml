@@ -7,7 +7,7 @@
   <priority>1.0</priority>
 </url>
 <url>
-    <loc>https://kurisu-blog.firebaseapp.com/blog/index.html</loc>
+    <loc>https://kurisu-blog.firebaseapp.com/blog/</loc>
     <priority>0.9</priority>
 </url>
 <url>
@@ -20,6 +20,10 @@
 </url>
 <url>
     <loc>https://kurisu-blog.firebaseapp.com/blog/2018/09/reverse-job.html</loc>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://kurisu-blog.firebaseapp.com/blog/2018/10/blockchain-with-go.html</loc>
     <priority>0.8</priority>
 </url>
 </urlset>
